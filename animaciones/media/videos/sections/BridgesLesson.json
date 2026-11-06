@@ -1,0 +1,62 @@
+[
+    {
+        "name": "introduccion",
+        "type": "default.normal",
+        "video": "BridgesLesson_0000_introduccion.mp4",
+        "width": 2560,
+        "height": 1440,
+        "nb_frames": "60",
+        "duration": "2.000000",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "grafo",
+        "type": "default.normal",
+        "video": "BridgesLesson_0001_grafo.mp4",
+        "width": 2560,
+        "height": 1440,
+        "nb_frames": "90",
+        "duration": "3.000000",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "dfs",
+        "type": "default.normal",
+        "video": "BridgesLesson_0002_dfs.mp4",
+        "width": 2560,
+        "height": 1440,
+        "nb_frames": "200",
+        "duration": "6.659505",
+        "avg_frame_rate": "307200/10229",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "resultado",
+        "type": "default.normal",
+        "video": "BridgesLesson_0003_resultado.mp4",
+        "width": 2560,
+        "height": 1440,
+        "nb_frames": "78",
+        "duration": "2.600000",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "cierre",
+        "type": "default.normal",
+        "video": "BridgesLesson_0004_cierre.mp4",
+        "width": 2560,
+        "height": 1440,
+        "nb_frames": "27",
+        "duration": "0.900000",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    }
+]
