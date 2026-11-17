@@ -1,111 +1,143 @@
 # Proyecto AED2: Puentes en grafos
 
-Este proyecto es una animación explicativa sobre los puentes de un
-grafo. Un puente es una arista cuya eliminación aumenta el número de
-componentes conexas del grafo. La animación explica este concepto y muestra
-cómo encontrarlos mediante un recorrido en profundidad (DFS) basado en el
-algoritmo de Tarjan.
+Video educativo de **3:00 minutos**, **2560 × 1440 píxeles**, **30 fps** y
+**sin audio**. Explica los puentes de un grafo no dirigido y cómo encontrarlos
+con un DFS y los valores `tin` y `low`. La animación se genera con Python y
+Manim 0.21.0 a partir de la implementación del grupo.
 
-## Avances actuales
+Integrantes: Juan Diego Mejía Armas y Marcelo Rosillo Rodríguez.
+Curso: CS2023 - Algoritmos y Estructuras de Datos.
 
-- Se implementó `find_bridges(n, edges)` para grafos no dirigidos.
-- El algoritmo calcula los valores `tin` y `low`, registra una traza de
-  eventos y funciona con grafos no conexos.
-- Se contempló el caso de aristas paralelas usando un identificador por
-  arista, en lugar de ignorar únicamente el vértice padre.
-- Se agregaron siete pruebas unitarias: ejemplo de la guía, árbol, ciclo,
-  aristas paralelas, grafo sin aristas, un solo nodo y grafo no conexo.
-- Se desarrollaron y renderizaron las escenas 0 a 3 de la animación:
-  portada, motivación, definición de puente y explicación de `tin`/`low`.
-- La escena del algoritmo utiliza los valores reales producidos por
-  `find_bridges`; los puentes y las componentes mostradas no están escritos
-  manualmente en la animación.
-- Se generó un video de avance en alta resolución, a 2560 × 1440 píxeles y
-  30 fps, sin audio.
+## Ver el resultado
 
-## Estructura del proyecto
+- `resultados/BridgesLesson_fondo.mp4`: video completo, sin pista de audio.
+- `resultados/escenas/`: los siete clips por separado y su índice JSON.
 
-| Carpeta | Contenido |
-|---|---|
-| `implementacion del codigo/` | Implementación del algoritmo y pruebas unitarias |
-| `animaciones/` | Código de Manim, configuración y archivos generados durante el renderizado |
-| `resultados/` | Videos renderizados del proyecto |
+Esta versión continúa el avance recibido (escenas 0 a 3) y completa las
+escenas 4 a 6. Se mantiene la franja inferior libre para una posible edición
+posterior. Las voces y las imágenes de personajes no forman parte de esta
+versión, conforme al alcance elegido.
 
-## Algoritmo
+## Contenido y tiempos
 
-La función `find_bridges(n, edges)` devuelve:
+| Escena | Intervalo | Contenido |
+|---|---|---|
+| 0 | 0:00-0:10 | Título, curso e integrantes |
+| 1 | 0:10-0:35 | Motivación: una conexión crítica entre dos grupos |
+| 2 | 0:35-1:05 | Definición de puente, componentes conexas y ciclos |
+| 3 | 1:05-1:50 | DFS, descubrimiento `tin`, `low` y condición del puente |
+| 4 | 1:50-2:20 | Ejecución completa guiada por la traza real |
+| 5 | 2:20-2:40 | Árbol, ciclo y aristas paralelas |
+| 6 | 2:40-3:00 | Complejidad, medición de revisiones y cierre |
+
+`TIEMPOS` contiene los fotogramas de cada sección y `MARCAS` sus momentos
+de énfasis. Las siete secciones suman 5400 fotogramas a 30 fps.
+
+## Organización
 
 ```text
-(puentes, traza, tin, low)
+ProyectoAED2/
+├── animaciones/bridges_lesson.py, manim.cfg
+├── implementacion del codigo/bridges.py, test_bridges.py
+├── assets/fonts/                # Fuentes y licencia
+├── resultados/BridgesLesson_fondo.mp4
+├── resultados/escenas/          # Siete clips e índice JSON
+├── renderizar.py
+├── requirements.txt
+├── CAMBIOS.md
+└── README.md
 ```
 
-Realiza un DFS con listas de adyacencia de pares `(vecino, id_arista)`.
-Cuando termina de recorrer un hijo `to` de un vértice `v`, la arista `(v, to)`
-es un puente si:
+## Algoritmo y vínculo con la animación
+
+`find_bridges(n, edges)` devuelve `(puentes, traza, tin, low)`. Los nodos
+se numeran de 1 a `n`. La lista de adyacencia guarda `(vecino, id_arista)`;
+el DFS ignora solo la arista por la que llegó, lo que permite tratar las
+aristas paralelas correctamente. También recorre todas las componentes.
+
+- `tin[v]`: instante de descubrimiento de `v`.
+- `low[v]`: menor tiempo de descubrimiento alcanzable bajando por el árbol
+  DFS desde `v` y usando, como máximo, una arista de retroceso.
+- Para una arista del árbol DFS de `u` a su hijo `v`, es puente si
+  `low[v] > tin[u]`.
+
+La escena 4 reproduce los eventos `enter`, `tree_edge`, `back_edge`,
+`check`, `bridge` y `exit`. Actualiza la tabla y la pila desde esos eventos;
+comprueba al terminar que sus valores coinciden con el resultado real.
+La escena 5 llama al algoritmo para cada caso y colorea sus resultados.
+No se usa una implementación de puentes de una librería externa.
+
+El ejemplo de siete nodos produce los puentes `{(3, 4), (6, 7)}`:
 
 ```text
-low[to] > tin[v]
-```
-
-El identificador de arista permite distinguir correctamente las aristas
-paralelas. Además, se inicia un DFS desde cada vértice que todavía no haya
-sido visitado para procesar grafos con varias componentes.
-
-Para el ejemplo de la guía, con 7 vértices y 8 aristas, se obtienen:
-
-```text
-puentes = {(3, 4), (6, 7)}
 tin = {1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6}
 low = {1: 0, 2: 0, 3: 0, 4: 3, 5: 3, 6: 3, 7: 6}
 ```
 
-### Ejecutar las pruebas
+## Complejidad y medición
 
-Desde la raíz del proyecto:
+El DFS tarda **O(|V| + |E|)** y usa **O(|V| + |E|)** de espacio, incluyendo
+la adyacencia y la pila recursiva. Conserva el orden de entrada de las
+aristas; no ordena las listas de adyacencia.
 
-```bash
-cd "implementacion del codigo"
-../.venv/bin/python -m unittest test_bridges -v
+La escena 6 compara el número real de revisiones de adyacencia en una
+cadena de 25 nodos y 24 aristas: **48 con DFS** y **1200 con fuerza bruta**.
+Las barras tienen longitudes proporcionales a esos contadores. Cada intento
+de fuerza bruta cuenta las componentes al excluir una arista por su id;
+también se incluye el recorrido inicial de referencia. La unidad medida
+es una revisión de una entrada de adyacencia, no tiempo de ejecución.
+
+## Instalación y ejecución en Windows
+
+Probado con Python 3.12 y Manim 0.21.0. Desde la raíz del proyecto:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m unittest discover -s "implementacion del codigo" -v
 ```
 
-## Animación
+Generar el video completo y los siete clips:
 
-El archivo `animaciones/bridges_lesson.py` contiene la escena
-`BridgesLesson`, organizada en cuatro secciones:
-
-| Sección | Duración | Contenido |
-|---|---:|---|
-| `e0_portada` | 10 s | Título, curso e integrantes |
-| `e1_motivacion` | 25 s | Dos grupos unidos por una arista crítica |
-| `e2_concepto` | 30 s | Definición de puente, componentes y ciclos |
-| `e3_algoritmo` | 45 s | DFS, valores `tin` y `low`, retroceso y condición del puente |
-
-La duración de cada sección está definida en `TIEMPOS` y las marcas de las
-explicaciones en `MARCAS`. La franja inferior de la escena queda libre para
-incorporar personajes durante la postproducción.
-
-### Renderizar la animación
-
-Para generar el video con Manim:
-
-```bash
-cd animaciones
-../.venv/bin/python -m manim --save_sections bridges_lesson.py BridgesLesson
+```powershell
+.\.venv\Scripts\python.exe renderizar.py
 ```
 
-Para crear el video de avance en `resultados/`:
+Generar una vista previa a 960 × 540, manteniendo 30 fps:
 
-```bash
-ffmpeg -y -i media/videos/bridges_lesson/1440p30/BridgesLesson.mp4 \
-  -c copy -movflags +faststart ../resultados/BridgesLesson_avance_mitad.mp4
+```powershell
+.\.venv\Scripts\python.exe renderizar.py --preview
 ```
 
-Para una revisión rápida se puede añadir `-ql` al comando de Manim.
+En Linux/macOS, los comandos equivalentes usan `.venv/bin/python`.
+El lanzador ejecuta Manim desde `animaciones/`, copia el resultado a
+`resultados/` y conserva clips separados mediante `--save_sections`.
+También se puede ejecutar Manim directamente desde `animaciones/`:
 
-## Trabajo pendiente
+```powershell
+..\.venv\Scripts\python.exe -m manim --save_sections bridges_lesson.py BridgesLesson
+```
 
-- Implementar las escenas 4, 5 y 6: demostración completa con la traza,
-  casos límite, complejidad y cierre.
-- Incorporar y sincronizar las voces.
-- Ajustar `TIEMPOS` y `MARCAS` después de integrar el audio.
-- Completar la postproducción y generar la versión final del video.
+Las fuentes están incluidas y se cargan solo para el proceso. Todos los
+textos usan `Text`; no se requiere LaTeX. Manim utiliza Cairo y Pango.
+
+## Verificación
+
+Hay diez pruebas, que incluyen el ejemplo, árboles, ciclos, aristas
+paralelas, bucles, componentes desconectadas, grafos sin aristas y un solo
+nodo. Una prueba dentro de esa batería compara con fuerza bruta los
+**1099 grafos simples etiquetados de hasta cinco nodos**. Otra comprueba
+los contadores usados en las barras.
+
+## Referencias y entrega
+
+- Enunciado del curso: Proyecto 2, CS2023, periodo 2026-2.
+- Guía de programación y planificación de puentes proporcionadas por el grupo.
+- Estilo y estructura del proyecto AED1 del grupo como referencia de continuidad.
+- [Documentación oficial de Manim](https://docs.manim.community/en/stable/).
+- Fuentes DejaVu: licencia incluida en `assets/fonts/LICENSE_DEJAVU`.
+
+Para incorporar esta versión, suban los cambios al repositorio original
+conservando su historial. La descarga ZIP no contiene los commits de Git.
+El enlace del repositorio, el enlace accesible del video y el informe
+académico se gestionan por separado según las indicaciones del curso.
