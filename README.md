@@ -11,7 +11,7 @@ Curso: Algoritmos y Estructuras de Datos.
 
 ## Video final
 
-El video terminado se encuentra en `resultados/VideoFinal/videoAEDv4.mp4`. Tiene una duración aproximada de 2 minutos y 23 segundos, resolución 1920 × 1080, 24 fps y pista de audio AAC.
+El video terminado se encuentra en `resultados/VideoFinal/videoAEDv4.mp4`. Tiene una duración aproximada de 2 minutos y 23 segundos, resolución 1920 × 1080, 24 fps y pista de audio AAC, para la edicion se utilizo DaVinci Resolve 21.
 
 Para trabajar con la animación original se guardaron también estos archivos:
 
