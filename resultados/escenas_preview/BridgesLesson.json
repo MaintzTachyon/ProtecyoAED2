@@ -1,0 +1,86 @@
+[
+    {
+        "name": "e0_portada",
+        "type": "default.normal",
+        "video": "BridgesLesson_0000_e0_portada.mp4",
+        "width": 960,
+        "height": 540,
+        "nb_frames": "124",
+        "duration": "4.133333",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "e1_motivacion",
+        "type": "default.normal",
+        "video": "BridgesLesson_0001_e1_motivacion.mp4",
+        "width": 960,
+        "height": 540,
+        "nb_frames": "569",
+        "duration": "18.966667",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "e2_concepto",
+        "type": "default.normal",
+        "video": "BridgesLesson_0002_e2_concepto.mp4",
+        "width": 960,
+        "height": 540,
+        "nb_frames": "590",
+        "duration": "19.666667",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "e3_algoritmo",
+        "type": "default.normal",
+        "video": "BridgesLesson_0003_e3_algoritmo.mp4",
+        "width": 960,
+        "height": 540,
+        "nb_frames": "254",
+        "duration": "8.466667",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "e4_ejecucion",
+        "type": "default.normal",
+        "video": "BridgesLesson_0004_e4_ejecucion.mp4",
+        "width": 960,
+        "height": 540,
+        "nb_frames": "602",
+        "duration": "20.064714",
+        "avg_frame_rate": "4623360/154097",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "e5_casos_especiales",
+        "type": "default.normal",
+        "video": "BridgesLesson_0005_e5_casos_especiales.mp4",
+        "width": 960,
+        "height": 540,
+        "nb_frames": "1013",
+        "duration": "33.766667",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    },
+    {
+        "name": "e6_complejidad_cierre",
+        "type": "default.normal",
+        "video": "BridgesLesson_0006_e6_complejidad_cierre.mp4",
+        "width": 960,
+        "height": 540,
+        "nb_frames": "1130",
+        "duration": "37.666667",
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "pix_fmt": "yuv420p"
+    }
+]

@@ -1,9 +1,10 @@
 # Proyecto AED2: Puentes en grafos
 
-Video educativo de **3:00 minutos**, **2560 × 1440 píxeles**, **30 fps** y
+Video educativo de **2:23 minutos**, **2560 × 1440 píxeles**, **30 fps** y
 **sin audio**. Explica los puentes de un grafo no dirigido y cómo encontrarlos
 con un DFS y los valores `tin` y `low`. La animación se genera con Python y
-Manim 0.21.0 a partir de la implementación del grupo.
+Manim 0.21.0 a partir de la implementación del grupo. Los tiempos están
+ajustados al audio final `references/Demo1.mp3`.
 
 Integrantes: Juan Diego Mejía Armas y Marcelo Rosillo Rodríguez.
 Curso: CS2023 - Algoritmos y Estructuras de Datos.
@@ -22,16 +23,16 @@ versión, conforme al alcance elegido.
 
 | Escena | Intervalo | Contenido |
 |---|---|---|
-| 0 | 0:00-0:10 | Título, curso e integrantes |
-| 1 | 0:10-0:35 | Motivación: una conexión crítica entre dos grupos |
-| 2 | 0:35-1:05 | Definición de puente, componentes conexas y ciclos |
-| 3 | 1:05-1:50 | DFS, descubrimiento `tin`, `low` y condición del puente |
-| 4 | 1:50-2:20 | Ejecución completa guiada por la traza real |
-| 5 | 2:20-2:40 | Árbol, ciclo y aristas paralelas |
-| 6 | 2:40-3:00 | Complejidad, medición de revisiones y cierre |
+| 0 | 0:00-0:04 | Título, curso e integrantes |
+| 1 | 0:04-0:23 | Motivación: una conexión crítica entre dos grupos |
+| 2 | 0:23-0:43 | Definición de puente, componentes conexas y ciclos |
+| 3 | 0:43-0:51 | DFS, descubrimiento `tin`, `low` y condición del puente |
+| 4 | 0:51-1:11 | Ejecución completa guiada por la traza real |
+| 5 | 1:11-1:45 | Árbol, ciclo y aristas paralelas |
+| 6 | 1:45-2:23 | Complejidad, medición de revisiones y cierre |
 
 `TIEMPOS` contiene los fotogramas de cada sección y `MARCAS` sus momentos
-de énfasis. Las siete secciones suman 5400 fotogramas a 30 fps.
+de énfasis. Las siete secciones suman 4282 fotogramas a 30 fps.
 
 ## Organización
 

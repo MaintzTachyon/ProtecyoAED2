@@ -56,37 +56,39 @@ def ajustar(objeto, ancho):
 
 
 FPS = 30
-TIEMPOS = {"e0": 300, "e1": 750, "e2": 900, "e3": 1350,
-           "e4": 900, "e5": 600, "e6": 600}
+TIEMPOS = {"e0": 124, "e1": 569, "e2": 590, "e3": 254,
+           "e4": 602, "e5": 1013, "e6": 1130}
 MARCAS = {
     "e1_islas": 0.0,
-    "e1_ruptura": 9.0,
-    "e1_pregunta": 15.0,
-    "e1_puentes": 22.0,
+    "e1_ruptura": 2.3,
+    "e1_pregunta": 6.0,
+    "e1_puentes": 16.3,
     "e2_grafo": 0.0,
-    "e2_rojas": 5.0,
-    "e2_quita34": 13.0,
-    "e2_quita12": 18.0,
-    "e2_ciclo": 22.0,
+    "e2_rojas": 2.3,
+    "e2_quita34": 9.3,
+    "e2_quita12": 13.2,
+    "e2_ciclo": 17.0,
     "e3_inicio": 0.0,
-    "e3_tin": 8.0,
-    "e3_low": 13.0,
-    "e3_retroceso": 19.0,
-    "e3_condicion": 31.0,
-    "e3_puente": 40.0,
-    "e4_inicio": 3.0,
-    "e4_back31": 7.0,
-    "e4_enter4": 11.0,
-    "e4_back64": 15.0,
-    "e4_enter7": 18.0,
-    "e4_puente67": 23.0,
-    "e4_puente34": 28.0,
-    "e4_fin": 29.5,
-    "e5_ciclo": 6.0,
-    "e5_paralelas": 10.0,
-    "e5_id": 15.0,
-    "e6_comparacion": 6.0,
-    "e6_cierre": 14.0,
+    "e3_tin": 1.5,
+    "e3_low": 3.7,
+    "e3_retroceso": 5.3,
+    "e3_condicion": 6.5,
+    "e3_puente": 7.3,
+    "e4_inicio": 0.0,
+    "e4_back31": 0.3,
+    "e4_enter4": 1.1,
+    "e4_back64": 4.2,
+    "e4_enter7": 7.4,
+    "e4_puente67": 17.3,
+    "e4_puente34": 18.4,
+    "e4_fin": 19.7,
+    "e5_arbol": 2.2,
+    "e5_ciclo": 10.0,
+    "e5_paralelas": 21.6,
+    "e5_id": 29.6,
+    "e6_formula": 5.7,
+    "e6_comparacion": 11.5,
+    "e6_cierre": 27.5,
 }
 
 Y_MIN_ANIMACION = -2.4
@@ -229,9 +231,9 @@ class BridgesLesson(Scene):
         ).arrange(DOWN, buff=0.16)
         portada = VGroup(titulo, integrantes).arrange(DOWN, buff=0.55)
 
-        self.mostrar_parte(75, Write(portada), run_time=1.3)
-        self.mostrar_parte(150)
-        self.mostrar_parte(40, FadeOut(portada), run_time=0.4)
+        self.mostrar_parte(40, Write(portada), run_time=1.2)
+        self.mostrar_parte(60)
+        self.mostrar_parte(24, FadeOut(portada), run_time=0.4)
         self.cerrar_seccion()
 
     def escena_1(self):
@@ -545,7 +547,7 @@ class BridgesLesson(Scene):
         self.limpiar_escena()
         self.cambiar_titulo(5, "Tres casos que conviene probar")
         casos = [
-            (0, "Árbol", 4, [(1, 2), (2, 3), (3, 4)],
+            (MARCAS["e5_arbol"], "Árbol", 4, [(1, 2), (2, 3), (3, 4)],
              {v: (-4.2 + (v - 1) * 2.8, 0.5, 0) for v in range(1, 5)},
              "Sin ciclos, todas las aristas son puentes", False),
             (MARCAS["e5_ciclo"], "Ciclo", 3, [(1, 2), (2, 3), (3, 1)],
@@ -588,6 +590,7 @@ class BridgesLesson(Scene):
         explicacion.move_to([0, 0.55, 0])
         memoria = texto("Espacio: O(|V| + |E|) para adyacencias y DFS", 22, GRIS)
         memoria.move_to([0, -0.35, 0])
+        self.esperar_hasta(MARCAS["e6_formula"])
         self.play(Write(formula), FadeIn(explicacion), FadeIn(memoria), run_time=1.0)
 
         self.esperar_hasta(MARCAS["e6_comparacion"])
@@ -625,7 +628,6 @@ class BridgesLesson(Scene):
         return VGroup(
             texto("Una ruta alternativa marca la diferencia", 34, VERDE),
             texto("low[v] > tin[u]  →  la arista (u,v) es un puente", 26, AMARILLO),
-            texto("CS2023 · Algoritmos y Estructuras de Datos", 20, GRIS),
         ).arrange(DOWN, buff=0.4).move_to([0, 0.3, 0])
 
 
